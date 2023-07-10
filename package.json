@@ -4,6 +4,13 @@
   "version": "1.0.0",
   "description": "Salesforce App",
   "scripts": {
+    "login": "sfdx force:auth:web:login -d -a devhub",
+    "show": "sfdx org:list",
+    "create:scratch": "sfdx org:create:scratch --target-dev-hub devhub -c -m -f config/project-scratch-def.json -a ${npm_package_name}-scratch --duration-days 30",
+    "open:scratch": "sfdx org:open --target-org ${npm_package_name}-scratch",
+    "deploy:scratch": "sfdx project:deploy:start --target-org ${npm_package_name}-scratch",
+    "delete:scratch": "sfdx org:delete:scratch --target-org ${npm_package_name}-scratch -p",
+    "lwc:start": "sfdx force:lightning:lwc:start -u ${npm_package_name}-scratch",
     "lint": "eslint **/{aura,lwc}/**",
     "test": "npm run test:unit",
     "test:unit": "sfdx-lwc-jest",
